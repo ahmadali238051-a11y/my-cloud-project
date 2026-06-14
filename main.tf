@@ -65,16 +65,26 @@ resource "aws_security_group" "my_vpc_sg" {
 }
 
 resource "aws_instance" "my_project_web_server" {
-  ami = var.instance_ami
+  ami           = var.instance_ami
   instance_type = var.instance_type
-  vpc_security_group_ids = [aws_security_group.my_vpc_sg.id]
-  subnet_id = aws_subnet.my_public_subnet.id
-  tags = {
-      Name = "my_project_web_server"
 
+  vpc_security_group_ids = [aws_security_group.my_vpc_sg.id]
+  subnet_id              = aws_subnet.my_public_subnet.id
+  key_name = "my-aws-key"
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt update -y
+              sudo apt install nginx -y
+              sudo systemctl start nginx
+              sudo systemctl enable nginx
+              EOF
+
+  tags = {
+    Name = "my_project_web_server"
   }
 }
 
-resource "aws_s3_bucket" "amzn_s3_project_bucket_01" {
-  bucket = "my-project-amzn-s3-bucket-01"
+resource "aws_s3_bucket" "amzn_s3_project_bucket_001" {
+  bucket = "my-project-amzn-s3-bucket-mohd-2026-001"
 }
