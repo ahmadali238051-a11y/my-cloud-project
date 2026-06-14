@@ -1,13 +1,14 @@
 AWS VPC Web Server Deployment using Terraform
+ 
+
 📌 Overview
 
 This project demonstrates Infrastructure as Code (IaC) using Terraform to build a complete AWS network and deploy a working Nginx web server on EC2.
 
 It includes full networking setup (VPC, Subnet, Internet Gateway, Route Table, Security Group) and automates EC2 provisioning using Terraform.
+
 🏗️ Architecture
-
 The infrastructure includes:
-
 - Custom VPC (10.0.0.0/16)
 - Public Subnet (10.0.1.0/24)
 - Internet Gateway (for public internet access)
@@ -24,10 +25,10 @@ The infrastructure includes:
 
  📁 Project Structure
  cloud-project/
-│── main.tf
-│── variables.tf
-│── outputs.tf
-│── README.md
+  │── main.tf
+  │── variables.tf
+  │── outputs.tf
+  │── README.md
 
 🧰 Prerequisites
 Make sure you have:
@@ -68,6 +69,6 @@ After deployment, Terraform outputs the EC2 public IP:
 terraform output
 
 Open in browser:
-
+http://<public-ip>
 http://<public-ip>TTP access
 Terraform outputs for instance IP and VPC ID
